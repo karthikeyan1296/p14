@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Display</title>
+</head>
+<body>
+    {% for file_url in file_urls %}
+      {% if file_url %}
+        <img src="{{ file_url }}" alt="no image found">
+      {% endif %}
+    {% endfor %}
+</body>
+</html>

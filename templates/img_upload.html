@@ -6,14 +6,13 @@
     <title>Image Upload</title>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data">
+    <form action="{% url 'rsk:img_disp' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        IMAGE:<input type="file" name="karthi" id="karthi">
+        IMAGE1:<input type="file" name="karthi" id="karthi1"><br>
+        IMAGE2:<input type="file" name="karthi" id="karthi2">
         <input type="submit" value="Submit">
     </form>
-    {% if file_url %}
-      <img src="{{ file_url }}" alt="no image found" height="100" width="200">
-    {% endif %}
+
 
 </body>
 </html>
