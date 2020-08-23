@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.core.mail import send_mail
 
@@ -41,7 +41,8 @@ def register(request):
         send_mail("thanks for registration","hello Mr./Ms{} {}\n Thanks for Registering".format(first_name,last_name),
         "karthikeyanrs1260@gmail.com",[email,],fail_silently=False)
 
-        return HttpResponse("{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>".format(first_name,last_name,email,password,phno,date,month,year,gender))
+        return redirect("rsk:home")
+        #return HttpResponse("{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>".format(first_name,last_name,email,password,phno,date,month,year,gender))
     return render(request,"registration.html")
 
 def multi(request):
@@ -59,15 +60,14 @@ def img(request):
    
     return render(request,"img_upload.html")
 
+
+from rsk.utilities import store_image
+
 def img_disp(request):
     file_url=False
     if request.method=="POST" and request.FILES:
-        file_urls=[]
-        image=request.FILES.getlist('karthi')
-        for i in image:
-            fs=FileSystemStorage()
-            file=fs.save(i.name,i)
-            file_url=fs.url(file)
-            file_urls.append(file_url)
+        image1=request.FILES.get('karthi1')
+        image2=request.FILES.get('karthi2')
+        file_urls=map(store_image,[image1,image2])
 
     return render(request,"img_display.html",context={'file_urls':file_urls})

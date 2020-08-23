@@ -8,8 +8,8 @@
 <body>
     <form action="{% url 'rsk:img_disp' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        IMAGE1:<input type="file" name="karthi" id="karthi1"><br>
-        IMAGE2:<input type="file" name="karthi" id="karthi2">
+        IMAGE1:<input type="file" name="karthi1" id="karthi1"><br>
+        IMAGE2:<input type="file" name="karthi2" id="karthi2">
         <input type="submit" value="Submit">
     </form>
 
