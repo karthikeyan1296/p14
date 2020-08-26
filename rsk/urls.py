@@ -12,5 +12,6 @@ urlpatterns = [
     path('multi/',views.multi,name="multi"),
     path('img/',views.img,name="img"),
     path('img_disp/',views.img_disp,name="img_disp"),
+    path('builtinforms/',views.builtinforms,name="builtinforms"),
 
 ]

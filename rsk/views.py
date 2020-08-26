@@ -71,3 +71,28 @@ def img_disp(request):
         file_urls=map(store_image,[image1,image2])
 
     return render(request,"img_display.html",context={'file_urls':file_urls})
+
+from rsk import forms
+
+def builtinforms(request):
+    form=forms.sampleForm(request.POST,request.FILES) 
+    if form.is_valid():
+        first_name=form.cleaned_data.get('first_name')
+        last_name=form.cleaned_data.get('last_name')
+        email=form.cleaned_data.get('email')
+        phno=form.cleaned_data.get('phno')
+        pwd=form.cleaned_data.get('pwd')
+        birth_day=form.cleaned_data.get('birth_day')
+        birth_month=form.cleaned_data.get('birth_month')
+        birth_year=form.cleaned_data.get('birth_year')
+        gender=form.cleaned_data.get('gender')
+        image=form.cleaned_data.get('image')
+        store_image(image)
+        data=form.cleaned_data
+        return render(request,"display_data.html",context=data)
+
+    form=forms.sampleForm()
+    return render(request,'builtin.html',{'form':form})
+
+#forms is a file or a library 
+#in forms Form is a class so we inherit from forms.Form
